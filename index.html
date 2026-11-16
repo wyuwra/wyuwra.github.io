@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light">
 <title>Yafeng Wang</title>
 <meta name="description" content="Yafeng Wang — Computer Science student at Nankai University.">
 <meta property="og:title" content="Yafeng Wang">
 <meta property="og:description" content="Computer Science student at Nankai University.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230b0c11'/><text x='50' y='70' font-size='58' font-family='Segoe UI,sans-serif' font-weight='300' fill='%23eef0f7' text-anchor='middle'>Y</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23eaf6f1'/><text x='50' y='70' font-size='58' font-family='Segoe UI,sans-serif' font-weight='300' fill='%23143a31' text-anchor='middle'>Y</text></svg>">
 <style>
   :root{
-    --bg: #07080c;
-    --text: #eef0f7;
-    --muted: #8b90a3;
-    --soft: #b9bdca;
-    --stroke: rgba(255,255,255,.09);
-    --accent: #8a8cff;
-    --accent-2: #45e0d2;
+    --bg: #f3f8f6;
+    --text: #1e2b29;
+    --muted: #6d7b78;
+    --soft: #45534f;
+    --card-line: rgba(30, 58, 52, .055);
+    --hairline: rgba(30, 58, 52, .085);
+    --quiet: rgba(30, 58, 52, .42);
+    --accent: #7cc9b2;
+    --accent-2: #a5cdf0;
   }
 
   *{ box-sizing: border-box; }
@@ -31,58 +33,63 @@
     justify-content: center;
     gap: 28px;
     padding: 48px 20px;
-    background: var(--bg);
     color: var(--text);
     font-family: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang SC",
                  "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    background:
+      radial-gradient(900px 620px at 8% -12%, #d5f0e4 0%, rgba(213,240,228,0) 62%),
+      radial-gradient(820px 600px at 96% 4%, #dceafa 0%, rgba(220,234,250,0) 60%),
+      radial-gradient(760px 700px at 82% 112%, #e9ecfb 0%, rgba(233,236,251,0) 62%),
+      var(--bg);
   }
 
-  /* ---------- 背景光斑 ---------- */
+  /* ---------- 背景光斑：极淡的两团色彩，缓慢漂移 ---------- */
   .glow{
     position: fixed;
     border-radius: 50%;
-    filter: blur(110px);
+    filter: blur(120px);
     pointer-events: none;
     z-index: 0;
-    opacity: .55;
+    opacity: .68;
   }
   .glow.a{
-    width: 620px; height: 620px; top: -260px; left: -160px;
-    background: radial-gradient(circle, rgba(120,110,255,.65), transparent 70%);
-    animation: drift-a 22s ease-in-out infinite alternate;
+    width: 560px; height: 560px; top: -240px; left: -170px;
+    background: radial-gradient(circle, rgba(150,226,200,.55), transparent 70%);
+    animation: drift-a 24s ease-in-out infinite alternate;
   }
   .glow.b{
-    width: 520px; height: 520px; bottom: -220px; right: -140px;
-    background: radial-gradient(circle, rgba(69,224,210,.42), transparent 70%);
-    animation: drift-b 26s ease-in-out infinite alternate;
+    width: 520px; height: 520px; bottom: -230px; right: -150px;
+    background: radial-gradient(circle, rgba(166,208,245,.5), transparent 70%);
+    animation: drift-b 28s ease-in-out infinite alternate;
   }
   .glow.c{
-    width: 460px; height: 460px; top: 40%; left: 55%;
-    background: radial-gradient(circle, rgba(160,90,255,.28), transparent 70%);
-    animation: drift-a 30s ease-in-out infinite alternate-reverse;
+    width: 420px; height: 420px; top: 42%; left: 58%;
+    background: radial-gradient(circle, rgba(205,196,245,.32), transparent 70%);
+    animation: drift-a 32s ease-in-out infinite alternate-reverse;
   }
   @keyframes drift-a{
     from{ transform: translate3d(0,0,0) scale(1); }
-    to{ transform: translate3d(70px,50px,0) scale(1.12); }
+    to{ transform: translate3d(60px,40px,0) scale(1.1); }
   }
   @keyframes drift-b{
-    from{ transform: translate3d(0,0,0) scale(1.05); }
-    to{ transform: translate3d(-60px,-40px,0) scale(1); }
+    from{ transform: translate3d(0,0,0) scale(1.04); }
+    to{ transform: translate3d(-50px,-36px,0) scale(1); }
   }
 
-  /* 细颗粒质感，压住渐变的塑料感 */
+  /* 细颗粒，压住渐变的塑料感；浅色下要非常轻 */
   body::after{
     content: "";
     position: fixed; inset: 0; z-index: 1;
     pointer-events: none;
-    opacity: .035;
+    opacity: .028;
+    mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* ---------- 卡片布局：左名片、右荣誉 ---------- */
+  /* ---------- 布局：左名片、右荣誉 ---------- */
   .stack{
     position: relative;
     z-index: 2;
@@ -102,15 +109,14 @@
     padding: 56px 48px 46px;
     text-align: center;
     border-radius: 30px;
-    border: 1px solid var(--stroke);
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015) 55%, rgba(255,255,255,.03));
+    border: 1px solid rgba(255,255,255,.9);
+    background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.72));
     box-shadow:
-      0 40px 90px -30px rgba(0,0,0,.9),
-      0 0 0 1px rgba(255,255,255,.02) inset,
-      0 1px 0 rgba(255,255,255,.1) inset;
-    backdrop-filter: blur(18px) saturate(120%);
-    -webkit-backdrop-filter: blur(18px) saturate(120%);
+      0 0 0 1px var(--card-line),
+      0 30px 60px -34px rgba(31, 74, 64, .30),
+      0 8px 22px -16px rgba(31, 74, 64, .18);
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
     animation: rise .7s cubic-bezier(.2,.7,.3,1) both;
   }
   @keyframes rise{
@@ -126,11 +132,11 @@
     border-radius: 50%;
     display: grid; place-items: center;
     font-size: 30px; font-weight: 300; letter-spacing: .5px;
-    color: #0b0c11;
-    background: linear-gradient(150deg, #ffffff, #c9cbf0);
+    color: #14322b;
+    background: linear-gradient(150deg, #ffffff, #d6efe6);
     box-shadow:
-      0 0 0 1px rgba(255,255,255,.35),
-      0 18px 40px -12px rgba(138,140,255,.55);
+      0 0 0 1px rgba(255,255,255,.95),
+      0 16px 34px -14px rgba(72, 150, 128, .40);
   }
   .avatar img{
     position: absolute; inset: 0;
@@ -146,7 +152,7 @@
     font-weight: 300;
     letter-spacing: -.03em;
     line-height: 1.08;
-    background: linear-gradient(180deg, #ffffff 25%, #c6c9dc 140%);
+    background: linear-gradient(180deg, #16211f 15%, #4c5d59 140%);
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
   }
@@ -162,7 +168,7 @@
   .divider{
     width: 44px; height: 1px;
     margin: 0 auto 26px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+    background: linear-gradient(90deg, transparent, rgba(30,58,52,.20), transparent);
   }
 
   .edu{
@@ -176,10 +182,10 @@
   }
   .edu svg{
     width: 16px; height: 16px;
-    opacity: .55;
+    opacity: .5;
     flex: none;
   }
-  .edu .dot{ color: rgba(255,255,255,.22); }
+  .edu .dot{ color: rgba(30,58,52,.24); }
 
   /* ---------- 荣誉卡 ---------- */
   .honors-card{
@@ -195,7 +201,7 @@
     position: absolute;
     top: 0; left: 14%; right: 14%; height: 1px;
     background: linear-gradient(90deg, transparent,
-                rgba(138,140,255,.7), rgba(69,224,210,.55), transparent);
+                rgba(124,201,178,1), rgba(165,205,240,1), transparent);
   }
   .honors-card .head{
     display: flex;
@@ -207,14 +213,14 @@
     font-size: 10.5px;
     font-weight: 600;
     letter-spacing: .24em;
-    color: rgba(255,255,255,.38);
+    color: var(--quiet);
     text-transform: uppercase;
     white-space: nowrap;
   }
   .honors-card .head .line{
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, rgba(255,255,255,.12), transparent);
+    background: linear-gradient(90deg, var(--hairline), transparent);
   }
   .honors-card ul{
     list-style: none;
@@ -227,7 +233,7 @@
     grid-template-columns: 76px 1fr;
     gap: 14px;
     padding: 16px 0;
-    border-top: 1px solid rgba(255,255,255,.055);
+    border-top: 1px solid var(--hairline);
     align-items: baseline;
   }
   .honors-card li:first-child{ border-top: none; padding-top: 6px; }
@@ -235,7 +241,7 @@
     font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
     font-size: 12px;
     letter-spacing: .02em;
-    color: rgba(255,255,255,.38);
+    color: var(--quiet);
   }
   .honors-card .what{
     font-size: 14.2px;
@@ -243,7 +249,7 @@
     color: var(--soft);
     letter-spacing: .01em;
   }
-  .honors-card .prize{ color: #e9ebf5; }
+  .honors-card .prize{ color: #1b6a57; }
 
   /* ---------- 按钮 ---------- */
   .actions{
@@ -268,26 +274,26 @@
   .btn svg{ width: 16px; height: 16px; }
 
   .btn.primary{
-    color: #0a0b10;
-    background: #f4f5f9;
-    box-shadow: 0 10px 30px -12px rgba(255,255,255,.45);
+    color: #12352c;
+    background: linear-gradient(135deg, #b1e8d7, #c4dff7);
+    box-shadow: 0 12px 26px -16px rgba(60, 150, 128, .65);
   }
   .btn.primary:hover{
     transform: translateY(-2px);
-    background: #ffffff;
-    box-shadow: 0 16px 34px -12px rgba(255,255,255,.55);
+    background: linear-gradient(135deg, #bdeedf, #d1e7fb);
+    box-shadow: 0 16px 30px -16px rgba(60, 150, 128, .78);
   }
 
   .btn.ghost{
-    color: var(--soft);
-    border: 1px solid rgba(255,255,255,.14);
-    background: rgba(255,255,255,.03);
+    color: #3c4a47;
+    border: 1px solid rgba(30,58,52,.14);
+    background: rgba(255,255,255,.55);
   }
   .btn.ghost:hover{
     transform: translateY(-2px);
-    color: #fff;
-    border-color: rgba(255,255,255,.28);
-    background: rgba(255,255,255,.07);
+    color: #16211f;
+    border-color: rgba(30,58,52,.26);
+    background: #ffffff;
   }
   .btn:focus-visible{
     outline: 2px solid var(--accent);
@@ -301,7 +307,7 @@
     margin-top: 0;
     text-align: center;
     font-size: 12.5px;
-    color: rgba(255,255,255,.32);
+    color: rgba(30,58,52,.50);
     letter-spacing: .04em;
   }
 
