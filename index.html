@@ -82,15 +82,16 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* ---------- 卡片堆叠 ---------- */
+  /* ---------- 卡片布局：左名片、右荣誉 ---------- */
   .stack{
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 560px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    max-width: 1010px;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 22px;
+    align-items: center;
   }
 
   /* ---------- 卡片 ---------- */
@@ -141,7 +142,7 @@
   /* ---------- 文字 ---------- */
   h1{
     margin: 0 0 16px;
-    font-size: clamp(36px, 7vw, 54px);
+    font-size: clamp(34px, 3.7vw, 48px);
     font-weight: 300;
     letter-spacing: -.03em;
     line-height: 1.08;
@@ -182,10 +183,12 @@
 
   /* ---------- 荣誉卡 ---------- */
   .honors-card{
-    padding: 30px 40px 26px;
+    padding: 38px 38px 34px;
     text-align: left;
     overflow: hidden;
     animation-delay: .08s;
+    display: flex;
+    flex-direction: column;
   }
   .honors-card::before{
     content: "";
@@ -198,7 +201,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 2px;
+    margin-bottom: 8px;
   }
   .honors-card .label{
     font-size: 10.5px;
@@ -213,16 +216,21 @@
     height: 1px;
     background: linear-gradient(90deg, rgba(255,255,255,.12), transparent);
   }
-  .honors-card ul{ list-style: none; margin: 0; padding: 0; }
+  .honors-card ul{
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
   .honors-card li{
     display: grid;
     grid-template-columns: 76px 1fr;
     gap: 14px;
-    padding: 12px 0;
+    padding: 16px 0;
     border-top: 1px solid rgba(255,255,255,.055);
     align-items: baseline;
   }
-  .honors-card li:first-child{ border-top: none; padding-top: 12px; }
+  .honors-card li:first-child{ border-top: none; padding-top: 6px; }
   .honors-card .year{
     font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
     font-size: 12px;
@@ -230,8 +238,8 @@
     color: rgba(255,255,255,.38);
   }
   .honors-card .what{
-    font-size: 13.8px;
-    line-height: 1.62;
+    font-size: 14.2px;
+    line-height: 1.6;
     color: var(--soft);
     letter-spacing: .01em;
   }
@@ -295,6 +303,11 @@
     font-size: 12.5px;
     color: rgba(255,255,255,.32);
     letter-spacing: .04em;
+  }
+
+  @media (max-width: 880px){
+    .stack{ grid-template-columns: 1fr; max-width: 560px; gap: 14px; }
+    h1{ font-size: clamp(36px, 7vw, 54px); }
   }
 
   @media (max-width: 560px){
@@ -373,7 +386,11 @@
       <span class="what">全国大学生计算机系统能力大赛<br>（数据库赛道）· <span class="prize">全国二等奖</span></span>
     </li>
     <li>
-      <span class="year">2024–2026</span>
+      <span class="year">2024–2025</span>
+      <span class="what">公能奖学金（Top 10%）· 校级三好学生</span>
+    </li>
+    <li>
+      <span class="year">2025–2026</span>
       <span class="what">公能奖学金（Top 10%）· 校级三好学生</span>
     </li>
   </ul>
