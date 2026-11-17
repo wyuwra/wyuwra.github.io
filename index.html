@@ -251,6 +251,26 @@
   }
   .honors-card .prize{ color: #1b6a57; }
 
+  /* ---------- 每日一句 ---------- */
+  .daily{
+    margin: 32px auto 0;
+    max-width: 400px;
+    text-align: center;
+  }
+  .daily blockquote{
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.95;
+    letter-spacing: .02em;
+    color: rgba(30,58,52,.52);
+  }
+  .daily figcaption{
+    margin-top: 7px;
+    font-size: 11.5px;
+    letter-spacing: .08em;
+    color: rgba(30,58,52,.36);
+  }
+
   /* ---------- 按钮 ---------- */
   .actions{
     display: flex;
@@ -379,6 +399,11 @@
       Email
     </a>
   </nav>
+
+  <figure class="daily">
+    <blockquote>路漫漫其修远兮，吾将上下而求索。</blockquote>
+    <figcaption>屈原《离骚》</figcaption>
+  </figure>
 </main>
 
 <section class="card honors-card" aria-label="Honors">
